@@ -1,5 +1,4 @@
 import cv2
-import numpy as np
 
 def to_white(image, threshold):
     # Cargar la imagen en escala de grises
