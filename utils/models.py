@@ -73,10 +73,9 @@ def load_knn(n_neighbors=5):
 def fit_knn(knn_model, X_train, y_train):
     return knn_model.fit(X_train, y_train)
 
-
-# TODO Revisar
-def evaluate_knn_cross_val(knn_model, X_test, y_test):
-    knn_score = cross_val_score(knn_model, X_test, y_test, cv=5)
+def evaluate_knn_f1(knn_model, X_test, y_test):
+    knn_pred = knn_model.predict(X_test)
+    knn_score = f1_score(y_test, knn_pred)
     return np.mean(knn_score)
 
 
