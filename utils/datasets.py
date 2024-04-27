@@ -2,7 +2,7 @@ import scipy.io.matlab as matlab
 
 
 def load_dataset():
-    """Loads dataset from disk."""
+    """Loads dataset"""
     mat_file = "BigDigits.mat"
     mat = matlab.loadmat(mat_file, squeeze_me=True)
     data = mat["data"]
