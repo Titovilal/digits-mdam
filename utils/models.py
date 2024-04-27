@@ -16,7 +16,7 @@ def fit_linear(linear_model, X_train, y_train):
     return linear_model.fit(X_train, y_train)
 
 
-# TODO Revisar
+# TODO Revisarrr
 def evaluate_linear_accuracy(linear_model, X_test, y_test):
     linear_pred = linear_model.predict(X_test)
     linear_pred = np.where(np.array(linear_pred) <= 0.5, 0, 1)
