@@ -11,4 +11,5 @@
 ---
 
 * Gráfica Curva ROC con cada modelo.
-*
+* Gráfica de que modelo converge mas rapido, es decir, f1 mean por cada modelo en cada tamaño de dataset
+  * esta misma pero con otros parametros en cada modelo
