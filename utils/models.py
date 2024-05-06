@@ -67,8 +67,8 @@ def evaluate_knn_f1(knn_model, X_test, y_test):
 from sklearn.svm import SVC
 
 
-def load_svm():
-    return SVC(kernel="linear", random_state=42)
+def load_svm(C=1, kernel="linear", random_state=np.random.randint(0, 1000)):
+    return SVC(kernel=kernel, C=C, random_state=random_state)
 
 
 def fit_svm(svm_model, X_train, y_train):
@@ -94,8 +94,10 @@ def evaluate_svm_f1(svm_model, X_test, y_test):
 from sklearn.neural_network import MLPClassifier
 
 
-def load_mlp(hidden_layer_sizes=(10,), activation="relu", max_iter=200):
-    return MLPClassifier(hidden_layer_sizes=hidden_layer_sizes, activation=activation, max_iter=max_iter)
+def load_mlp(hidden_layer_sizes=(10,), activation="relu", max_iter=1500):
+    return MLPClassifier(
+        hidden_layer_sizes=hidden_layer_sizes, activation=activation, max_iter=max_iter
+    )
 
 
 def fit_mlp(mlp_model, X_train, y_train):
@@ -117,8 +119,8 @@ def load_kmeans(n_clusters=2):
     return KMeans(n_clusters=n_clusters)
 
 
-def fit_kmeans(kmeans_model, X_train):
-    return kmeans_model.fit(X_train)
+def fit_kmeans(kmeans_model, X_train, y_train):
+    return kmeans_model.fit(X_train, y_train)
 
 
 def evaluate_kmeans_f1(kmeans_model, X_test, y_test):
