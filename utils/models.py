@@ -24,6 +24,9 @@ class AbstractModel:
         y_prob = self.model.predict_proba(X_test)
         fpr, tpr, thresholds = roc_curve(y_test, y_prob[:, 1])
         return fpr, tpr, thresholds
+    
+    def predict(self, X_test):
+        return self.model.predict(X_test)
 
 
 # region Linear
