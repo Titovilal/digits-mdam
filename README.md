@@ -1,15 +1,22 @@
-### Cosas para hacer
+### Gráficas y orden de la presentación
 
-#### Gráficas evaluando F1 Score de cada modelo.
+1. Gráficas con Train Size = 0.7 y decir que no tiene sentido estudiarlo.
+   1. Ver en que datos falla cada modelo y ver si son los mismos
+2. Gráfica de como mejora el rendimiento con Train Size de 0.3 a 0.006.
+   1. Hacer 5 repeticiones y sacar la media para cada punto.
+3. Gráficas con Train Size = 0.01 y decir que esto esta mejor para hacer un análisis.
+   1. A partir de ahora el dataset con datos balanceados.
+4. Explicar los 2 tipos de preprocesamiento que vamos a hacer (3 datasets diferentes).
+5. Explicar cada gráfica mostrando una gráfica por cada dataset (cada diapositiva con las 3 gráficas).
 
-* Gráfica Linear y Quadratic (preguntar al profe que hay que cambiar en cada repetición).
-* Gráfica KNN variando K, mostrar varias lineas, 1 por cada repetición.
-* Gráfica MLP variando neuronas de primera capa, varias lineas, 1 por cada repetición.
-* Gráfica SVM variando C, varias lineas, 1 por cada repetición.
-* Gráfica KMeans variando nClusters, varias lineas, 1 por cada repectición.
 
----
 
-* Gráfica Curva ROC con cada modelo.
-* Gráfica de que modelo converge mas rapido, es decir, f1 mean por cada modelo en cada tamaño de dataset
-  * esta misma pero con otros parametros en cada modelo
+
+numeros propios
+
+datos desbalanceados
+
+ver en que datos falla y comparar si los modelos fallan en los mismos datos
+
+
+Afrontar el estudio con un problema real (se empieza el estudio con Train Size = 0.01)
