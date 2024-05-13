@@ -46,6 +46,25 @@ class QDA(AbstractModel):
         qda_pred = np.where(np.array(qda_pred) <= 0.5, 0, 1)
         qda_score = f1_score(y_test, qda_pred)
         return np.mean(qda_score)
+    from sklearn.metrics import roc_curve
+
+class QDA(AbstractModel):
+    def __init__(self):
+        super().__init__()
+        self.model = QuadraticDiscriminantAnalysis()
+
+    def evaluate_f1(self, X_test, y_test):
+        qda_pred = self.model.predict(X_test)
+        qda_pred = np.where(np.array(qda_pred) <= 0.5, 0, 1)
+        qda_score = f1_score(y_test, qda_pred)
+        return np.mean(qda_score)
+
+    def roc_curve(self, X_test, y_test):
+        # Obtén las probabilidades de la clase positiva
+        y_scores = self.model.predict_proba(X_test)[:, 1]
+        # Calcula la curva ROC
+        fpr, tpr, thresholds = roc_curve(y_test, y_scores)
+        return fpr, tpr, thresholds
 
 
 class KNN(AbstractModel):
@@ -55,9 +74,9 @@ class KNN(AbstractModel):
 
 
 class SVM(AbstractModel):
-    def __init__(self, C=1, kernel="linear", random_state=None):
+    def __init__(self, C=1, kernel="linear", random_state=None, probability=False):
         super().__init__()
-        self.model = SVC(kernel=kernel, C=C, random_state=random_state)
+        self.model = SVC(kernel=kernel, C=C, random_state=random_state, probability=probability)
 
 
 class MLP(AbstractModel):
