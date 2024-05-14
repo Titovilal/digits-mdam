@@ -11,7 +11,6 @@ def plot_MLP(mlp_accuracys):
 
 def plot_knn_f1(f1_scores):
     plt.figure(figsize=(10, 6))
-    colors = sns.color_palette("pastel", len(f1_scores))
     # Grafica los valores de F1 para cada valor de k
     for i, f1_score in enumerate(f1_scores):
         plt.plot(
