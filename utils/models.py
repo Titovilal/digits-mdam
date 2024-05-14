@@ -24,29 +24,16 @@ class AbstractModel:
         y_prob = self.model.predict_proba(X_test)
         fpr, tpr, thresholds = roc_curve(y_test, y_prob[:, 1])
         return fpr, tpr, thresholds
-    
+
     def predict(self, X_test):
         return self.model.predict(X_test)
 
 
-# region Linear
 class Linear(AbstractModel):
     def __init__(self):
         super().__init__()
         self.model = LogisticRegression()
 
-
-class QDA(AbstractModel):
-    def __init__(self):
-        super().__init__()
-        self.model = QuadraticDiscriminantAnalysis()
-
-    def evaluate_f1(self, X_test, y_test):
-        qda_pred = self.model.predict(X_test)
-        qda_pred = np.where(np.array(qda_pred) <= 0.5, 0, 1)
-        qda_score = f1_score(y_test, qda_pred)
-        return np.mean(qda_score)
-    from sklearn.metrics import roc_curve
 
 class QDA(AbstractModel):
     def __init__(self):
@@ -68,15 +55,19 @@ class QDA(AbstractModel):
 
 
 class KNN(AbstractModel):
-    def __init__(self, n_neighbors=5):
+    def __init__(self, n_neighbors=5, weights="uniform", metric="minkowski"):
         super().__init__()
-        self.model = KNeighborsClassifier(n_neighbors=n_neighbors)
+        self.model = KNeighborsClassifier(
+            n_neighbors=n_neighbors, weights=weights, metric=metric
+        )
 
 
 class SVM(AbstractModel):
     def __init__(self, C=1, kernel="linear", random_state=None, probability=False):
         super().__init__()
-        self.model = SVC(kernel=kernel, C=C, random_state=random_state, probability=probability)
+        self.model = SVC(
+            kernel=kernel, C=C, random_state=random_state, probability=probability
+        )
 
 
 class MLP(AbstractModel):
