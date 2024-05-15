@@ -20,6 +20,19 @@ class AbstractModel:
         y_pred = self.model.predict(X_test)
         return f1_score(y_test, y_pred, average="macro")
 
+    def evaluate_f1_t(self, X_test, y_test, threshold=0.5):
+        y_proba = self.model.predict_proba(X_test)
+        predictions = (y_proba[:, 1] >= threshold).astype(int)
+        mask = y_proba.max(axis=1) >= threshold
+        y_test_array = np.array(y_test)  # Convertir y_test a un array de NumPy
+        y_test_filt = y_test_array[mask]
+        y_pred_filt = predictions[mask]
+        return (
+            f1_score(y_test_filt, y_pred_filt, average="macro"),
+            y_test_filt,
+            y_pred_filt,
+        )
+
     def roc_curve(self, X_test, y_test):
         y_prob = self.model.predict_proba(X_test)
         fpr, tpr, thresholds = roc_curve(y_test, y_prob[:, 1])
